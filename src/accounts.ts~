@@ -1,0 +1,36 @@
+import {customer} from './customer'
+
+export default class accounts {
+	private static record: customer[] = []
+
+	static addAccount(newAcc: customer): boolean {
+		let oldAcc = this.findAccount(newAcc.getAccountNo())
+		if (oldAcc === null) {
+			this.record.push(newAcc)
+			return true
+		}
+		return false
+	}
+
+	static getAllAccounts(): customer[] {
+		return this.record
+	}
+
+	static getAllAccountsJSON(): string[] {
+		let accs: string[] = []
+		for (let idx in this.record) {
+			accs.push(JSON.stringify(this.record[idx]))
+		}
+		return accs
+	}
+
+	static findAccount(accountNo: string): customer | null {
+		for (let idx in this.record) {
+			let cust = this.record[idx]
+			if (cust.getAccountNo() === accountNo) {
+				return cust
+			}
+		}
+		return null
+	}
+}

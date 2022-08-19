@@ -1,0 +1,14 @@
+{
+	"files": [
+		"src/app.ts", 
+		"src/customer.ts",
+	    "src/accounts.ts", 
+		"src/transaction.ts"
+	],
+	"compilerOptions": {
+		"noImplicitAny": true,
+		"target": "es5",
+		"esModuleInterop": true,
+		"skipLibCheck": true
+	}
+}

@@ -1,0 +1,64 @@
+import express from 'express';
+import {customer} from './customer';
+import {transaction} from './transaction';
+import accounts from './accounts';
+
+const app = express();
+
+app.use(express.json());
+
+
+const trnx = new transaction()
+
+app.get('/', (req, res) => {
+	res.send('Transaction Home Endpoint'); 
+});
+
+app.route('/createAcc')
+	.get((req, res) => {
+		res.send('GET: Create Account Endpoint')
+	})
+	.post((req, res) => {
+		const msg = trnx.createAccount(req.body.firstName, req.body.lastName)
+		res.send(msg)
+		//res.send('POST: Create Account Endpoint')
+	});
+
+app.route('/fundAcc')
+	.get((req, res) => {
+		res.send('GET: Fund Account Endpoint')
+	})
+	.post((req, res) => {
+		const msg = trnx.fundAccount(req.body.accountNo, req.body.amount)
+		res.send(msg)
+		//res.send('POST: Fund Account Endpoint')
+	});
+
+app.route('/transferFunds')
+	.get((req, res) => {
+		res.send('GET: Transfer Funds Endpoint')
+	})
+	.post((req, res) => {
+		res.send('POST: Transfer Funds Endpoint')
+	});
+	
+app.route('/withdrawFunds')
+	.get((req, res) => {
+		res.send('GET: Withdraw  Funds Endpoint')
+	})
+	.post((req, res) => {
+		res.send('POST: Withdraw Funds Endpoint')
+	});
+
+app.route('/allAccounts')
+	.get((req, res) => {
+		//res.send(accounts.getAllAccountsJSON())
+		res.send(accounts.getAllAccounts())
+	})
+const port = process.env.PORT || 3005;
+
+app.listen(port, () => console.log(`App listening on PORT ${port}`));
+
+
+
+

@@ -1,0 +1,10 @@
+const chai = require('chai'),
+	assert = require('assert')
+
+describe('SUM', () => {
+	it('should add two numbers', () => {
+		let result = 1 + 1
+		//chai.expect(result).to.equal(2)
+		assert.isEqual(result, 2, 'these numbers are equal')
+	})
+})
